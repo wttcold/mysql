@@ -1,0 +1,153 @@
+1.mysql> select * from countries;
++------------+--------------------------+-----------+
+| COUNTRY_ID | COUNTRY_NAME             | REGION_ID |
++------------+--------------------------+-----------+
+| AR         | Argentina                | 2         |
+| AU         | Australia                | 3         |
+| BE         | Belgium                  | 1         |
+| BR         | Brazil                   | 2         |
+| CA         | Canada                   | 2         |
+| CH         | Switzerland              | 1         |
+| CN         | China                    | 3         |
+| DE         | Germany                  | 1         |
+| DK         | Denmark                  | 1         |
+| EG         | Egypt                    | 4         |
+| FR         | France                   | 1         |
+| IL         | Israel                   | 4         |
+| IN         | India                    | 3         |
+| IT         | Italy                    | 1         |
+| JP         | Japan                    | 3         |
+| KW         | Kuwait                   | 4         |
+| ML         | Malaysia                 | 3         |
+| MX         | Mexico                   | 2         |
+| NG         | Nigeria                  | 4         |
+| NL         | Netherlands              | 1         |
+| SG         | Singapore                | 3         |
+| UK         | United Kingdom           | 1         |
+| US         | United States of America | 2         |
+| ZM         | Zambia                   | 4         |
+| ZW         | Zimbabwe                 | 4         |
++------------+--------------------------+-----------+
+
+2.mysql> select distinct location_id from departments;
++-------------+
+| location_id |
++-------------+
+| 1700        |
+| 1800        |
+| 2400        |
+| 1500        |
+| 1400        |
+| 2700        |
+| 2500        |
++-------------+
+
+3.mysql> select * from departments where location_id=1700;
++---------------+----------------------+------------+-------------+
+| DEPARTMENT_ID | DEPARTMENT_NAME      | MANAGER_ID | LOCATION_ID |
++---------------+----------------------+------------+-------------+
+|            10 | Administration       | 200        | 1700        |
+|            30 | Purchasing           | 114        | 1700        |
+|            90 | Executive            | 100        | 1700        |
+|           100 | Finance              | 108        | 1700        |
+|           110 | Accounting           | 205        | 1700        |
+|           120 | Treasury             |            | 1700        |
+|           130 | Corporate Tax        |            | 1700        |
+|           140 | Control And Credit   |            | 1700        |
+|           150 | Shareholder Services |            | 1700        |
+|           160 | Benefits             |            | 1700        |
+|           170 | Manufacturing        |            | 1700        |
+|           180 | Construction         |            | 1700        |
+|           190 | Contracting          |            | 1700        |
+|           200 | Operations           |            | 1700        |
+|           210 | IT Support           |            | 1700        |
+|           220 | NOC                  |            | 1700        |
+|           230 | IT Helpdesk          |            | 1700        |
+|           240 | Government Sales     |            | 1700        |
+|           250 | Retail Sales         |            | 1700        |
+|           260 | Recruiting           |            | 1700        |
+|           270 | Payroll              |            | 1700        |
++---------------+----------------------+------------+-------------+
+
+4.mysql> select * from departments order by location_id;
++---------------+----------------------+------------+-------------+
+| DEPARTMENT_ID | DEPARTMENT_NAME      | MANAGER_ID | LOCATION_ID |
++---------------+----------------------+------------+-------------+
+|            60 | IT                   | 103        | 1400        |
+|            50 | Shipping             | 121        | 1500        |
+|            10 | Administration       | 200        | 1700        |
+|            30 | Purchasing           | 114        | 1700        |
+|            90 | Executive            | 100        | 1700        |
+|           100 | Finance              | 108        | 1700        |
+|           110 | Accounting           | 205        | 1700        |
+|           120 | Treasury             |            | 1700        |
+|           130 | Corporate Tax        |            | 1700        |
+|           140 | Control And Credit   |            | 1700        |
+|           150 | Shareholder Services |            | 1700        |
+|           160 | Benefits             |            | 1700        |
+|           170 | Manufacturing        |            | 1700        |
+|           180 | Construction         |            | 1700        |
+|           190 | Contracting          |            | 1700        |
+|           200 | Operations           |            | 1700        |
+|           210 | IT Support           |            | 1700        |
+|           220 | NOC                  |            | 1700        |
+|           230 | IT Helpdesk          |            | 1700        |
+|           240 | Government Sales     |            | 1700        |
+|           250 | Retail Sales         |            | 1700        |
+|           260 | Recruiting           |            | 1700        |
+|           270 | Payroll              |            | 1700        |
+|            20 | Marketing            | 201        | 1800        |
+|            40 | Human Resources      | 203        | 2400        |
+|            80 | Sales                | 145        | 2500        |
+|            70 | Public Relations     | 204        | 2700        |
++---------------+----------------------+------------+-------------+
+
+5.mysql> select sum(location_id) from departments;
++------------------+
+| sum(location_id) |
++------------------+
+|            48000 |
++------------------+
+
+6.mysql> select sum(location_id) from departments where location_id>1700;
++------------------+
+| sum(location_id) |
++------------------+
+|             9400 |
++------------------+
+
+7.mysql> select * from emp, dept where emp.deptno= dept.deptno;
++-------+--------+-----------+------+------------+------+---------+--------+--------+------------+----------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO | DEPTNO | DNAME      | LOC      |
++-------+--------+-----------+------+------------+------+---------+--------+--------+------------+----------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |     30 | SALES      | CHICAGO  |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |     10 | ACCOUNTING | NEW YORK |
++-------+--------+-----------+------+------------+------+---------+--------+--------+------------+----------+
+
+8.mysql> select age,name  from student union all select REGION_ID,REGION_NAME from regions;
++------+------------------------+
+| age  | name                   |
++------+------------------------+
+| 18   | joker                  |
+| 20   | xiaozhao               |
+| 1    | Europe                 |
+| 2    | Americas               |
+| 3    | Asia                   |
+| 4    | Middle East and Africa |
++------+------------------------+
+
+
+
+
